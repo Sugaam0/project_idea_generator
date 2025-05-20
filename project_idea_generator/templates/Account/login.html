@@ -1,0 +1,469 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<section class="pspark-registration-section">
+  <div class="pspark-container">
+    <div class="row">
+      <div class="col-lg-12 mb-5">
+        {% include 'messages.html' %}
+
+        {% if form.errors %}
+        {% for field in form %}
+        {% for error in field.errors %}
+        <div class="pspark-alert pspark-alert-danger">
+          <span class="pspark-alert-close" onclick="this.parentElement.style.display='none'">×</span>
+          <strong>{{ error|escape }}</strong>
+        </div>
+        {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+        <div class="pspark-alert pspark-alert-danger">
+          <span class="pspark-alert-close" onclick="this.parentElement.style.display='none'">×</span>
+          <strong>{{ error|escape }}</strong>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        <div class="pspark-form-container pspark-glassmorphism pspark-gradient-border pspark-fade-in">
+          <h2 class="pspark-form-title">Log in to ProjectIdeaGen</h2>
+          <p class="pspark-form-subtitle">Access your personalized project ideas</p>
+          <form action="{% url 'account:login' %}" method="POST" class="pspark-form">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="pspark-form-group">
+              <label class="pspark-form-label" for="id_{{ field.name }}">{{ field.label }}</label>
+              <input
+                type="{{ field.field.widget.input_type }}"
+                class="pspark-form-input pspark-hover-glow"
+                name="{{ field.name }}"
+                id="id_{{ field.name }}"
+                placeholder="{{ field.field.widget.attrs.placeholder }}"
+                required
+              />
+            </div>
+            {% endfor %}
+            <button
+              type="submit"
+              class="pspark-gradient-bg pspark-gradient-button pspark-hover-glow pspark-form-button"
+            >
+              Log in
+            </button>
+          </form>
+          <p class="pspark-form-footer">
+            <span class="pspark-form-footer-text">Don't have an account?</span>
+            <a href="{% url 'account:registration' %}" class="pspark-link pspark-link-gradient">Sign up</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+</xArtifact>
+
+#### `style.css`
+The existing `style.css` (version `d5e10e94-e9e8-417e-933a-d5b329bfbd3b`) supports the form’s styling but needs `.pspark-alert` and `.pspark-alert-danger` for error messages, which were added previously. I’ll include the full `style.css` to confirm all styles are present, with no changes to existing classes to ensure `register.html`, `navbar.html`, and `footer.html` remain unaffected.
+
+<xaiArtifact artifact_id="620e3e95-1c1e-4300-a71d-403d4a00c8ff" artifact_version_id="ffd23903-f827-4f77-85b8-f8aa780f1fc5" title="style.css" contentType="text/css">
+/* ProjectSpark Styles */
+
+/* === General === */
+.pspark-wrapper {
+    font-family: 'Poppins', sans-serif;
+    color: #1F2A44;
+    background: #FFFFFF;
+}
+
+.pspark-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.pspark-gradient-bg {
+    background: #14B8A6;
+    background: linear-gradient(90deg, #14B8A6, #0EA5E9);
+    color: #FFFFFF !important;
+}
+
+.pspark-gradient-border {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid transparent;
+}
+
+.pspark-gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    padding: 2px;
+    background: linear-gradient(45deg, #14B8A6, #0EA5E9);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+}
+
+.pspark-glassmorphism {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+@supports not (backdrop-filter: blur(12px)) {
+    .pspark-glassmorphism {
+        background: rgba(255, 255, 255, 0.9);
+    }
+}
+
+.pspark-hover-glow {
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.pspark-hover-glow:hover {
+    box-shadow: 0 0 15px rgba(20, 184, 166, 0.4);
+    transform: translateY(-2px);
+}
+
+.pspark-gradient-button {
+    position: relative;
+    overflow: hidden;
+}
+
+.pspark-gradient-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease-in-out;
+}
+
+.pspark-gradient-button:hover::before {
+    left: 100%;
+}
+
+@keyframes psparkFadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.pspark-fade-in {
+    animation: psparkFadeIn 0.6s ease-out forwards;
+}
+
+/* === Alerts === */
+.pspark-alert {
+    position: relative;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    font-size: 0.875rem;
+}
+
+.pspark-alert-danger {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid #EF4444;
+    color: #EF4444;
+}
+
+.pspark-alert-close {
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    font-size: 1.25rem;
+    cursor: pointer;
+    color: #EF4444;
+}
+
+/* === Navbar === */
+.pspark-navbar {
+    background: #FFFFFF;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.pspark-navbar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 4rem;
+}
+
+.pspark-brand {
+    display: flex;
+    align-items: center;
+}
+
+.pspark-brand-title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #1F2A44;
+}
+
+.pspark-brand-tagline {
+    margin-left: 0.5rem;
+    font-size: 0.875rem;
+    color: #14B8A6;
+}
+
+.pspark-navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.pspark-nav-link {
+    text-decoration: none;
+    color: #1F2A44;
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.5rem 0.75rem;
+    position: relative;
+    transition: color 0.3s ease-in-out;
+}
+
+.pspark-nav-link:hover {
+    color: #14B8A6;
+}
+
+.pspark-nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background: #14B8A6;
+    transition: width 0.3s ease-in-out;
+}
+
+.pspark-nav-link:hover::after {
+    width: 100%;
+}
+
+.pspark-nav-button {
+    padding: 0.5rem 1.5rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-block;
+}
+
+/* === Registration and Login Form === */
+.pspark-registration-section {
+    min-height: calc(100vh - 8rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F1F5F9;
+    padding: 3rem 1rem;
+}
+
+.pspark-form-container {
+    max-width: 32rem;
+    width: 100%;
+    padding: 2.5rem;
+    border-radius: 12px;
+    position: relative;
+    z-index: 1;
+}
+
+.pspark-form-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-align: center;
+    color: #1F2A44;
+}
+
+.pspark-form-subtitle {
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    text-align: center;
+    color: #4B5563;
+}
+
+.pspark-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.pspark-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.pspark-form-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #1F2A44;
+}
+
+.pspark-form-input {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #D1D5DB;
+    background: #FFFFFF;
+    color: #1F2A44;
+    font-size: 1rem;
+    pointer-events: auto;
+    z-index: 1;
+}
+
+.pspark-form-input::placeholder {
+    color: #9CA3AF;
+}
+
+.pspark-form-input:focus {
+    outline: none;
+    border-color: #14B8A6;
+    box-shadow: 0 0 0 2px rgba(20, 184, 166, 0.2);
+}
+
+.pspark-form-button {
+    padding: 0.75rem 1rem;
+    border-radius: 9999px;
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+}
+
+.pspark-form-footer {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 0.875rem;
+    color: #4B5563;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.25rem;
+}
+
+.pspark-form-footer-text {
+    color: #4B5563;
+    font-weight: 400;
+}
+
+.pspark-link {
+    color: #14B8A6;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.pspark-link:hover {
+    text-decoration: underline;
+}
+
+.pspark-link-gradient {
+    position: relative;
+    color: #14B8A6;
+    font-weight: 500;
+    transition: color 0.3s ease-in-out;
+}
+
+.pspark-link-gradient:hover {
+    color: #0EA5E9;
+    text-decoration: none;
+}
+
+.pspark-link-gradient::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background: linear-gradient(90deg, #14B8A6, #0EA5E9);
+    transition: width 0.3s ease-in-out;
+}
+
+.pspark-link-gradient:hover::after {
+    width: 100%;
+}
+
+/* === Footer === */
+.pspark-footer {
+    background: #FFFFFF;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 3rem 0;
+}
+
+.pspark-footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+}
+
+.pspark-footer-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1F2A44;
+}
+
+.pspark-footer-text {
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    color: #4B5563;
+}
+
+.pspark-footer-links {
+    list-style: none;
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.pspark-footer-links a {
+    text-decoration: none;
+    color: #4B5563;
+    font-size: 0.875rem;
+    transition: color 0.3s ease-in-out;
+}
+
+.pspark-footer-links a:hover {
+    color: #14B8A6;
+}
+
+.pspark-footer-bottom {
+    margin-top: 2rem;
+    border-top: 1px solid #E5E7EB;
+    padding-top: 2rem;
+    text-align: center;
+}
+
+/* === Responsive Design === */
+@media (max-width: 640px) {
+    .pspark-navbar-content {
+        flex-direction: column;
+        height: auto;
+        padding: 1rem 0;
+    }
+    .pspark-navbar-right {
+        margin-top: 1rem;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .pspark-form-container {
+        padding: 1.5rem;
+    }
+    .pspark-form-footer {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}

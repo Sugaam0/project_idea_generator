@@ -1,0 +1,19 @@
+<nav class="pspark-navbar">
+    <div class="pspark-container pspark-navbar-content">
+        <div class="pspark-brand">
+            <h1 class="pspark-brand-title"><a href="{% url 'idea_app:home' %}" style="text-decoration: none; color: inherit;">ProjectIdeaGen</a></h1>
+            <span class="pspark-brand-tagline">Spark Your Next Idea</span>
+        </div>
+        <div class="pspark-navbar-right">
+            {% if user.is_authenticated %}
+                <a href="{% url 'idea_app:home' %}" class="pspark-nav-link">Home</a>
+                <a href="#" class="pspark-nav-link">About</a>
+                <a href="#" class="pspark-nav-link">Projects</a>
+                <a href="{% url 'account:logout' %}" class="pspark-gradient-bg pspark-gradient-button pspark-nav-button">Logout</a>
+            {% else %}
+                <a href="{% url 'account:login' %}" class="pspark-gradient-bg pspark-gradient-button pspark-nav-button">Log In</a>
+                <a href="{% url 'account:registration' %}" class="pspark-gradient-bg pspark-gradient-button pspark-nav-button">Register</a>
+            {% endif %}
+        </div>
+    </div>
+</nav>

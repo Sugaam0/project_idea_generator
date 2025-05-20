@@ -1,0 +1,20 @@
+{% if messages %}
+  <div class="messages-container pspark-container" style="position: fixed; top: 5rem; right: 1.5rem; z-index: 1000; max-width: 20rem;">
+    {% for message in messages %}
+      <div class="pspark-alert pspark-gradient-border pspark-glassmorphism pspark-fade-in {{ message.tags }}" role="alert" data-message-id="{{ forloop.counter }}">
+        <!-- Icon based on message type -->
+        {% if message.tags == 'alert-success' %}
+          <i class="fas fa-check-circle me-2"></i>
+        {% elif message.tags == 'alert-danger' %}
+          <i class="fas fa-exclamation-circle me-2"></i>
+        {% elif message.tags == 'alert-warning' %}
+          <i class="fas fa-exclamation-triangle me-2"></i>
+        {% elif message.tags == 'alert-info' %}
+          <i class="fas fa-info-circle me-2"></i>
+        {% endif %}
+        <span>{{ message }}</span>
+        <span class="pspark-alert-close" aria-label="Close" onclick="dismissMessage(this)">×</span>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}

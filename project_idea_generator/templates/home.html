@@ -1,0 +1,195 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="pspark-registration-section pspark-gradient-bg pspark-fade-in">
+  <div class="pspark-container text-center">
+    {% if user.is_authenticated %}
+      <h1 class="pspark-form-title">
+        Welcome Back, {{ user.first_name|default:user.username }}!
+      </h1>
+      <p class="pspark-form-subtitle">
+        Your next big project awaits. Let's bring your ideas to life!
+      </p>
+      <div class="mt-4">
+        <a href="#" class="pspark-gradient-button pspark-hover-glow pspark-form-button">
+          Explore Your Projects
+        </a>
+      </div>
+    {% else %}
+      <h1 class="pspark-form-title">
+        Spark Your Next Big Idea
+      </h1>
+      <p class="pspark-form-subtitle">
+        Discover personalized project ideas tailored to your passions and skills.
+      </p>
+      <div class="d-flex justify-content-center gap-3 mt-4">
+        <a href="{% url 'account:registration' %}" class="pspark-gradient-bg pspark-gradient-button pspark-hover-glow pspark-form-button">
+          Get Started
+        </a>
+        <a href="{% url 'account:login' %}" class="pspark-gradient-bg pspark-gradient-button pspark-hover-glow pspark-form-button">
+          Log In
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- Mission Statement -->
+<section class="py-5 bg-light pspark-fade-in">
+  <div class="pspark-container text-center">
+    <h2 class="pspark-form-title">Our Mission</h2>
+    <p class="pspark-form-subtitle">
+      At ProjectIdeaGen, we empower creators by providing tailored project ideas that inspire innovation and fuel creativity. Join thousands of users turning their passions into reality.
+    </p>
+  </div>
+</section>
+
+<!-- Stats Section -->
+<section class="py-5 pspark-stats-section">
+  <div class="pspark-container">
+    <div class="row text-center">
+      <div class="col-md-4 mb-4">
+        <div class="pspark-glassmorphism pspark-hover-glow p-4">
+          <h3 class="fw-bold" style="color: #14B8A6;">10,000+</h3>
+          <p class="pspark-form-subtitle">Users Inspired</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="pspark-glassmorphism pspark-hover-glow p-4">
+          <h3 class="fw-bold" style="color: #14B8A6;">50,000+</h3>
+          <p class="pspark-form-subtitle">Ideas Generated</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="pspark-glassmorphism pspark-hover-glow p-4">
+          <h3 class="fw-bold" style="color: #14B8A6;">1,000+</h3>
+          <p class="pspark-form-subtitle">Projects Completed</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Feature Section -->
+<section class="pspark-registration-section py-5">
+  <div class="pspark-container">
+    <h2 class="pspark-form-title text-center mb-5">
+      {% if user.is_authenticated %}
+        Your Creative Journey
+      {% else %}
+        Why Choose ProjectIdeaGen?
+      {% endif %}
+    </h2>
+    <div class="row">
+      {% if user.is_authenticated %}
+        <div class="col-md-4 mb-4">
+          <div class="pspark-glassmorphism pspark-hover-glow pspark-fade-in p-4 h-100">
+            <div class="text-center mb-3">
+              <i class="bi bi-lightbulb-fill" style="font-size: 2.5rem; color: #14B8A6;"></i>
+            </div>
+            <h3 class="fw-semibold" style="color: #1F2A44;">View Your Ideas</h3>
+            <p class="pspark-form-subtitle">
+              Access your personalized project ideas and start building today.
+            </p>
+            <a href="#" class="pspark-link pspark-link-gradient">Go to Projects</a>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="pspark-glassmorphism pspark-hover-glow pspark-fade-in p-4 h-100">
+            <div class="text-center mb-3">
+              <i class="bi bi-gear-fill" style="font-size: 2.5rem; color: #14B8A6;"></i>
+            </div>
+            <h3 class="fw-semibold" style="color: #1F2A44;">Update Interests</h3>
+            <p class="pspark-form-subtitle">
+              Refine your interests to get even more tailored project suggestions.
+            </p>
+            <a href="#" class="pspark-link pspark-link-gradient">Edit Profile</a>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="pspark-glassmorphism pspark-hover-glow pspark-fade-in p-4 h-100">
+            <div class="text-center mb-3">
+              <i class="bi bi-people-fill" style="font-size: 2.5rem; color: #14B8A6;"></i>
+            </div>
+            <h3 class="fw-semibold" style="color: #1F2A44;">Connect with Creators</h3>
+            <p class="pspark-form-subtitle">
+              Join our community to share ideas and collaborate on projects.
+            </p>
+            <a href="#" class="pspark-link pspark-link-gradient">Join Community</a>
+          </div>
+        </div>
+      {% else %}
+        <div class="col-md-4 mb-4">
+          <div class="pspark-glassmorphism pspark-hover-glow pspark-fade-in p-4 h-100">
+            <div class="text-center mb-3">
+              <i class="bi bi-lightbulb-fill" style="font-size: 2.5rem; color: #14B8A6;"></i>
+            </div>
+            <h3 class="fw-semibold" style="color: #1F2A44;">Personalized Ideas</h3>
+            <p class="pspark-form-subtitle">
+              Get project ideas tailored to your interests and skill level.
+            </p>
+            <a href="{% url 'account:registration' %}" class="pspark-link pspark-link-gradient">Start Now</a>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="pspark-glassmorphism pspark-hover-glow pspark-fade-in p-4 h-100">
+            <div class="text-center mb-3">
+              <i class="bi bi-heart-fill" style="font-size: 2.5rem; color: #14B8A6;"></i>
+            </div>
+            <h3 class="fw-semibold" style="color: #1F2A44;">Custom Interests</h3>
+            <p class="pspark-form-subtitle">
+              Tell us what you love, and we’ll suggest projects that match.
+            </p>
+            <a href="{% url 'account:registration' %}" class="pspark-link pspark-link-gradient">Join Today</a>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="pspark-glassmorphism pspark-hover-glow pspark-fade-in p-4 h-100">
+            <div class="text-center mb-3">
+              <i class="bi bi-people-fill" style="font-size: 2.5rem; color: #14B8A6;"></i>
+            </div>
+            <h3 class="fw-semibold" style="color: #1F2A44;">Community Inspiration</h3>
+            <p class="pspark-form-subtitle">
+              Connect with creators to spark new ideas and collaborations.
+            </p>
+            <a href="{% url 'account:registration' %}" class="pspark-link pspark-link-gradient">Get Inspired</a>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<!-- Testimonial Section -->
+<section class="py-5 bg-light pspark-fade-in">
+  <div class="pspark-container">
+    <h2 class="pspark-form-title text-center mb-5">What Our Users Say</h2>
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <div class="pspark-glassmorphism pspark-hover-glow p-4">
+          <p class="pspark-form-subtitle">"ProjectIdeaGen helped me find a project that perfectly matched my skills!"</p>
+          <p class="fw-semibold mt-3" style="color: #1F2A44;">— Sarah K., Developer</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="pspark-glassmorphism pspark-hover-glow p-4">
+          <p class="pspark-form-subtitle">"The community feature opened up new collaboration opportunities for me."</p>
+          <p class="fw-semibold mt-3" style="color: #1F2A44;">— Michael T., Designer</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="pspark-glassmorphism pspark-hover-glow p-4">
+          <p class="pspark-form-subtitle">"I love how easy it is to get inspired and start creating!"</p>
+          <p class="fw-semibold mt-3" style="color: #1F2A44;">— Emma L., Student</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+{% endblock %}
