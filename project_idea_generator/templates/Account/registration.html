@@ -1,57 +1,48 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<section class="pspark-registration-section">
-    <div class="pspark-form-container pspark-glassmorphism pspark-gradient-border pspark-fade-in">
-        <h2 class="pspark-form-title">Join ProjectIdeaGen</h2>
-        <p class="pspark-form-subtitle">Discover projects tailored to your passions</p>
-        <form action="" method="POST" class="pspark-form" enctype="multipart/form-data">
-    {% csrf_token %}
-
-    <div class="pspark-form-group">
-        <label for="first_name" class="pspark-form-label">First Name</label>
-        <input id="first_name" name="first_name" type="text" required class="pspark-form-input" placeholder="Enter First Name" />
-    </div>
-
-    <div class="pspark-form-group">
-        <label for="last_name" class="pspark-form-label">Last Name</label>
-        <input id="last_name" name="last_name" type="text" required class="pspark-form-input" placeholder="Enter Last Name" />
-    </div>
-
-    <div class="pspark-form-group">
-        <label for="email" class="pspark-form-label">Email Address</label>
-        <input id="email" name="email" type="email" required class="pspark-form-input" placeholder="email@example.com" />
-    </div>
-
-    <div class="pspark-form-group">
-        <label for="password1" class="pspark-form-label">Password</label>
-        <input id="password1" name="password1" type="password" required class="pspark-form-input" placeholder="********" />
-    </div>
-
-    <div class="pspark-form-group">
-        <label for="password2" class="pspark-form-label">Confirm Password</label>
-        <input id="password2" name="password2" type="password" required class="pspark-form-input" placeholder="********" />
-    </div>
-
-    <div class="pspark-form-group">
-        <label for="gender" class="pspark-form-label">Gender</label>
-        <select id="gender" name="gender" required class="pspark-form-input">
-            <option value="" disabled selected>Select Gender</option>
-            <option value="M">Male</option>
-            <option value="F">Female</option>
-        </select>
-    </div>
-
-     <button
-                type="submit"
-                class="pspark-gradient-bg pspark-gradient-button pspark-hover-glow pspark-form-button">
-                Create Account
-            </button>
-</form>
-        <p class="pspark-form-footer">
-            <span class="pspark-form-footer-text">Already have an account?</span>
-            <a href="#" class="pspark-link pspark-link-gradient">Log in</a>
-        </p>
+<section class="pspark-form-section pspark-fade-in">
+    <div class="pspark-container">
+        <div class="pspark-form-container pspark-glassmorphism pspark-gradient-border">
+            <h2 class="pspark-form-title">Join ProjectIdeaGen</h2>
+            <p class="pspark-form-subtitle">Discover projects tailored to your passions</p>
+            <form action="" method="POST" class="pspark-form" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="pspark-form-group">
+                    <label for="first_name" class="pspark-form-label">First Name</label>
+                    <input id="first_name" name="first_name" type="text" required class="pspark-form-input" placeholder="Enter First Name" />
+                </div>
+                <div class="pspark-form-group">
+                    <label for="last_name" class="pspark-form-label">Last Name</label>
+                    <input id="last_name" name="last_name" type="text" required class="pspark-form-input" placeholder="Enter Last Name" />
+                </div>
+                <div class="pspark-form-group">
+                    <label for="email" class="pspark-form-label">Email Address</label>
+                    <input id="email" name="email" type="email" required class="pspark-form-input" placeholder="email@example.com" />
+                </div>
+                <div class="pspark-form-group">
+                    <label for="password1" class="pspark-form-label">Password</label>
+                    <input id="password1" name="password1" type="password" required class="pspark-form-input" placeholder="********" />
+                </div>
+                <div class="pspark-form-group">
+                    <label for="password2" class="pspark-form-label">Confirm Password</label>
+                    <input id="password2" name="password2" type="password" required class="pspark-form-input" placeholder="********" />
+                </div>
+                <div class="pspark-form-group">
+                    <label for="gender" class="pspark-form-label">Gender</label>
+                    <select id="gender" name="gender" required class="pspark-form-input">
+                        <option value="" disabled selected>Select Gender</option>
+                        <option value="M">Male</option>
+                        <option value="F">Female</option>
+                    </select>
+                </div>
+                <button type="submit" class="pspark-gradient-bg pspark-gradient-button pspark-hover-glow">Create Account</button>
+            </form>
+            <div class="pspark-form-footer">
+                <span>Already have an account?</span>
+                <a href="{% url 'account:login' %}" class="pspark-form-link">Log in</a>
+            </div>
+        </div>
     </div>
 </section>
 {% endblock %}

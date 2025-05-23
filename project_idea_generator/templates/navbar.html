@@ -7,7 +7,7 @@
         <div class="pspark-navbar-right">
             {% if user.is_authenticated %}
                 <a href="{% url 'idea_app:home' %}" class="pspark-nav-link">Home</a>
-                <a href="#" class="pspark-nav-link">About</a>
+                <a href="{% url 'idea_app:about' %}" class="pspark-nav-link">About</a>
                 <a href="#" class="pspark-nav-link">Projects</a>
                 <a href="{% url 'account:logout' %}" class="pspark-gradient-bg pspark-gradient-button pspark-nav-button">Logout</a>
             {% else %}

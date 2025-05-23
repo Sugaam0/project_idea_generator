@@ -1,195 +1,168 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block content %}
 
 <!-- Hero Section -->
-<section class="pspark-registration-section pspark-gradient-bg pspark-fade-in">
-  <div class="pspark-container text-center">
-    {% if user.is_authenticated %}
-      <h1 class="pspark-form-title">
-        Welcome Back, {{ user.first_name|default:user.username }}!
-      </h1>
-      <p class="pspark-form-subtitle">
-        Your next big project awaits. Let's bring your ideas to life!
-      </p>
-      <div class="mt-4">
-        <a href="#" class="pspark-gradient-button pspark-hover-glow pspark-form-button">
-          Explore Your Projects
-        </a>
-      </div>
-    {% else %}
-      <h1 class="pspark-form-title">
-        Spark Your Next Big Idea
-      </h1>
-      <p class="pspark-form-subtitle">
-        Discover personalized project ideas tailored to your passions and skills.
-      </p>
-      <div class="d-flex justify-content-center gap-3 mt-4">
-        <a href="{% url 'account:registration' %}" class="pspark-gradient-bg pspark-gradient-button pspark-hover-glow pspark-form-button">
-          Get Started
-        </a>
-        <a href="{% url 'account:login' %}" class="pspark-gradient-bg pspark-gradient-button pspark-hover-glow pspark-form-button">
-          Log In
-        </a>
-      </div>
-    {% endif %}
-  </div>
+<section class="pspark-hero pspark-home-section pspark-fade-in">
+    <div class="pspark-container pspark-glassmorphism pspark-gradient-border text-center" style="padding: 4rem 2rem; margin: 0 auto; max-width: 1000px;">
+        {% if user.is_authenticated %}
+            <h1 class="pspark-home-title">Welcome Back, {{ user.first_name|default:user.email }}!</h1>
+            <p class="pspark-home-subtitle">Discover a new project idea to fuel your creativity, like <strong>building an AI-driven task manager</strong>.</p>
+            <a href="{% url 'idea_app:generate_ideas' %}" class="pspark-gradient-bg pspark-gradient-button pspark-hover-glow">Generate Project Ideas</a>
+        {% else %}
+            <h1 class="pspark-home-title">Ignite Your Next Big Idea</h1>
+            <p class="pspark-home-subtitle">Join thousands of creators building personalized projects tailored to their passions and skills.</p>
+            <div style="display: flex; justify-content: center; gap: 1.5rem;">
+                <a href="{% url 'account:registration' %}" class="pspark-gradient-bg pspark-gradient-button pspark-hover-glow">Get Started</a>
+                <a href="#" class="pspark-home-link">Learn More</a>
+            </div>
+        {% endif %}
+    </div>
 </section>
+
+<div class="pspark-section-divider"></div>
 
 <!-- Mission Statement -->
-<section class="py-5 bg-light pspark-fade-in">
-  <div class="pspark-container text-center">
-    <h2 class="pspark-form-title">Our Mission</h2>
-    <p class="pspark-form-subtitle">
-      At ProjectIdeaGen, we empower creators by providing tailored project ideas that inspire innovation and fuel creativity. Join thousands of users turning their passions into reality.
-    </p>
-  </div>
+<section class="pspark-home-section pspark-fade-in">
+    <div class="pspark-container pspark-glassmorphism pspark-gradient-border text-center" style="padding: 2.5rem 2rem; max-width: 1000px;">
+        <i class="bi bi-rocket-takeoff-fill pspark-card-icon"></i>
+        <h2 class="pspark-home-title">Our Mission</h2>
+        <p class="pspark-home-subtitle">We empower creators to transform their passions into reality with tailored project ideas and a vibrant community.</p>
+    </div>
 </section>
 
-<!-- Stats Section -->
-<section class="py-5 pspark-stats-section">
-  <div class="pspark-container">
-    <div class="row text-center">
-      <div class="col-md-4 mb-4">
-        <div class="pspark-glassmorphism pspark-hover-glow p-4">
-          <h3 class="fw-bold" style="color: #14B8A6;">10,000+</h3>
-          <p class="pspark-form-subtitle">Users Inspired</p>
-        </div>
-      </div>
-      <div class="col-md-4 mb-4">
-        <div class="pspark-glassmorphism pspark-hover-glow p-4">
-          <h3 class="fw-bold" style="color: #14B8A6;">50,000+</h3>
-          <p class="pspark-form-subtitle">Ideas Generated</p>
-        </div>
-      </div>
-      <div class="col-md-4 mb-4">
-        <div class="pspark-glassmorphism pspark-hover-glow p-4">
-          <h3 class="fw-bold" style="color: #14B8A6;">1,000+</h3>
-          <p class="pspark-form-subtitle">Projects Completed</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<div class="pspark-section-divider"></div>
 
 <!-- Feature Section -->
-<section class="pspark-registration-section py-5">
-  <div class="pspark-container">
-    <h2 class="pspark-form-title text-center mb-5">
-      {% if user.is_authenticated %}
-        Your Creative Journey
-      {% else %}
-        Why Choose ProjectIdeaGen?
-      {% endif %}
-    </h2>
-    <div class="row">
-      {% if user.is_authenticated %}
-        <div class="col-md-4 mb-4">
-          <div class="pspark-glassmorphism pspark-hover-glow pspark-fade-in p-4 h-100">
-            <div class="text-center mb-3">
-              <i class="bi bi-lightbulb-fill" style="font-size: 2.5rem; color: #14B8A6;"></i>
-            </div>
-            <h3 class="fw-semibold" style="color: #1F2A44;">View Your Ideas</h3>
-            <p class="pspark-form-subtitle">
-              Access your personalized project ideas and start building today.
-            </p>
-            <a href="#" class="pspark-link pspark-link-gradient">Go to Projects</a>
-          </div>
+<section class="pspark-home-section pspark-fade-in">
+    <div class="pspark-container">
+        <h2 class="pspark-home-title">
+            {% if user.is_authenticated %}Fuel Your Creative Journey{% else %}Why ProjectIdeaGen?{% endif %}
+        </h2>
+        <div class="row">
+            {% if user.is_authenticated %}
+                <div class="col-md-4 mb-4 pspark-staggered-fade-in">
+                    <div class="pspark-card pspark-glassmorphism pspark-gradient-border pspark-hover-glow">
+                        <div class="pspark-card-content">
+                            <i class="bi bi-lightbulb-fill pspark-card-icon"></i>
+                            <h3 class="pspark-card-title">Discover Your Ideas</h3>
+                            <p class="pspark-card-text">Access curated project ideas tailored to your interests and skills.</p>
+                        </div>
+                        <a href="#" class="pspark-home-link">View Projects</a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 pspark-staggered-fade-in">
+                    <div class="pspark-card pspark-glassmorphism pspark-gradient-border pspark-hover-glow">
+                        <div class="pspark-card-content">
+                            <i class="bi bi-gear-fill pspark-card-icon"></i>
+                            <h3 class="pspark-card-title">Personalize Your Profile</h3>
+                            <p class="pspark-card-text">Update your interests for more relevant project suggestions.</p>
+                        </div>
+                        <a href="#" class="pspark-home-link">Edit Profile</a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 pspark-staggered-fade-in">
+                    <div class="pspark-card pspark-glassmorphism pspark-gradient-border pspark-hover-glow">
+                        <div class="pspark-card-content">
+                            <i class="bi bi-people-fill pspark-card-icon"></i>
+                            <h3 class="pspark-card-title">Collaborate & Connect</h3>
+                            <p class="pspark-card-text">Join our community to share ideas and find collaborators.</p>
+                        </div>
+                        <a href="#" class="pspark-home-link">Join Community</a>
+                    </div>
+                </div>
+            {% else %}
+                <div class="col-md-4 mb-4 pspark-staggered-fade-in">
+                    <div class="pspark-card pspark-glassmorphism pspark-gradient-border pspark-hover-glow">
+                        <div class="pspark-card-content">
+                            <i class="bi bi-lightbulb-fill pspark-card-icon"></i>
+                            <h3 class="pspark-card-title">Tailored Project Ideas</h3>
+                            <p class="pspark-card-text">Receive project suggestions that match your unique expertise.</p>
+                        </div>
+                        <a href="{% url 'account:registration' %}" class="pspark-home-link">Get Started</a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 pspark-staggered-fade-in">
+                    <div class="pspark-card pspark-glassmorphism pspark-gradient-border pspark-hover-glow">
+                        <div class="pspark-card-content">
+                            <i class="bi bi-heart-fill pspark-card-icon"></i>
+                            <h3 class="pspark-card-title">Passion-Driven Inspiration</h3>
+                            <p class="pspark-card-text">Tell us what you love, and we’ll inspire you with exciting projects.</p>
+                        </div>
+                        <a href="{% url 'account:registration' %}" class="pspark-home-link">Join Now</a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 pspark-staggered-fade-in">
+                    <div class="pspark-card pspark-glassmorphism pspark-gradient-border pspark-hover-glow">
+                        <div class="pspark-card-content">
+                            <i class="bi bi-people-fill pspark-card-icon"></i>
+                            <h3 class="pspark-card-title">Vibrant Community</h3>
+                            <p class="pspark-card-text">Connect with creators worldwide to spark collaborations.</p>
+                        </div>
+                        <a href="{% url 'account:registration' %}" class="pspark-home-link">Discover Community</a>
+                    </div>
+                </div>
+            {% endif %}
         </div>
-        <div class="col-md-4 mb-4">
-          <div class="pspark-glassmorphism pspark-hover-glow pspark-fade-in p-4 h-100">
-            <div class="text-center mb-3">
-              <i class="bi bi-gear-fill" style="font-size: 2.5rem; color: #14B8A6;"></i>
-            </div>
-            <h3 class="fw-semibold" style="color: #1F2A44;">Update Interests</h3>
-            <p class="pspark-form-subtitle">
-              Refine your interests to get even more tailored project suggestions.
-            </p>
-            <a href="#" class="pspark-link pspark-link-gradient">Edit Profile</a>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="pspark-glassmorphism pspark-hover-glow pspark-fade-in p-4 h-100">
-            <div class="text-center mb-3">
-              <i class="bi bi-people-fill" style="font-size: 2.5rem; color: #14B8A6;"></i>
-            </div>
-            <h3 class="fw-semibold" style="color: #1F2A44;">Connect with Creators</h3>
-            <p class="pspark-form-subtitle">
-              Join our community to share ideas and collaborate on projects.
-            </p>
-            <a href="#" class="pspark-link pspark-link-gradient">Join Community</a>
-          </div>
-        </div>
-      {% else %}
-        <div class="col-md-4 mb-4">
-          <div class="pspark-glassmorphism pspark-hover-glow pspark-fade-in p-4 h-100">
-            <div class="text-center mb-3">
-              <i class="bi bi-lightbulb-fill" style="font-size: 2.5rem; color: #14B8A6;"></i>
-            </div>
-            <h3 class="fw-semibold" style="color: #1F2A44;">Personalized Ideas</h3>
-            <p class="pspark-form-subtitle">
-              Get project ideas tailored to your interests and skill level.
-            </p>
-            <a href="{% url 'account:registration' %}" class="pspark-link pspark-link-gradient">Start Now</a>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="pspark-glassmorphism pspark-hover-glow pspark-fade-in p-4 h-100">
-            <div class="text-center mb-3">
-              <i class="bi bi-heart-fill" style="font-size: 2.5rem; color: #14B8A6;"></i>
-            </div>
-            <h3 class="fw-semibold" style="color: #1F2A44;">Custom Interests</h3>
-            <p class="pspark-form-subtitle">
-              Tell us what you love, and we’ll suggest projects that match.
-            </p>
-            <a href="{% url 'account:registration' %}" class="pspark-link pspark-link-gradient">Join Today</a>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="pspark-glassmorphism pspark-hover-glow pspark-fade-in p-4 h-100">
-            <div class="text-center mb-3">
-              <i class="bi bi-people-fill" style="font-size: 2.5rem; color: #14B8A6;"></i>
-            </div>
-            <h3 class="fw-semibold" style="color: #1F2A44;">Community Inspiration</h3>
-            <p class="pspark-form-subtitle">
-              Connect with creators to spark new ideas and collaborations.
-            </p>
-            <a href="{% url 'account:registration' %}" class="pspark-link pspark-link-gradient">Get Inspired</a>
-          </div>
-        </div>
-      {% endif %}
     </div>
-  </div>
 </section>
 
-<!-- Testimonial Section -->
-<section class="py-5 bg-light pspark-fade-in">
-  <div class="pspark-container">
-    <h2 class="pspark-form-title text-center mb-5">What Our Users Say</h2>
-    <div class="row">
-      <div class="col-md-4 mb-4">
-        <div class="pspark-glassmorphism pspark-hover-glow p-4">
-          <p class="pspark-form-subtitle">"ProjectIdeaGen helped me find a project that perfectly matched my skills!"</p>
-          <p class="fw-semibold mt-3" style="color: #1F2A44;">— Sarah K., Developer</p>
+<div class="pspark-section-divider"></div>
+
+<!-- Project Showcase -->
+<section class="pspark-home-section pspark-fade-in">
+    <div class="pspark-container">
+        <h2 class="pspark-home-title">Explore Inspiring Projects</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4 pspark-staggered-fade-in">
+                <div class="pspark-card pspark-glassmorphism pspark-gradient-border pspark-hover-glow">
+                    <div class="pspark-card-content">
+                        <h3 class="pspark-card-title">AI-Powered Chatbot</h3>
+                        <p class="pspark-card-text">Build a conversational AI using Python and NLP for real-time assistance.</p>
+                    </div>
+                    <a href="#" class="pspark-home-link">View Details</a>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4 pspark-staggered-fade-in">
+                <div class="pspark-card pspark-glassmorphism pspark-gradient-border pspark-hover-glow">
+                    <div class="pspark-card-content">
+                        <h3 class="pspark-card-title">Sustainable Web App</h3>
+                        <p class="pspark-card-text">Create a carbon footprint tracker with Django and Vue.js.</p>
+                    </div>
+                    <a href="#" class="pspark-home-link">View Details</a>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4 pspark-staggered-fade-in">
+                <div class="pspark-card pspark-glassmorphism pspark-gradient-border pspark-hover-glow">
+                    <div class="pspark-card-content">
+                        <h3 class="pspark-card-title">IoT Smart Home</h3>
+                        <p class="pspark-card-text">Design an automated smart home system with Raspberry Pi and MQTT.</p>
+                    </div>
+                    <a href="#" class="pspark-home-link">View Details</a>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="col-md-4 mb-4">
-        <div class="pspark-glassmorphism pspark-hover-glow p-4">
-          <p class="pspark-form-subtitle">"The community feature opened up new collaboration opportunities for me."</p>
-          <p class="fw-semibold mt-3" style="color: #1F2A44;">— Michael T., Designer</p>
-        </div>
-      </div>
-      <div class="col-md-4 mb-4">
-        <div class="pspark-glassmorphism pspark-hover-glow p-4">
-          <p class="pspark-form-subtitle">"I love how easy it is to get inspired and start creating!"</p>
-          <p class="fw-semibold mt-3" style="color: #1F2A44;">— Emma L., Student</p>
-        </div>
-      </div>
     </div>
-  </div>
 </section>
 
+<div class="pspark-section-divider"></div>
 
+
+<div class="pspark-section-divider"></div>
+
+<!-- CTA Banner -->
+<section class="pspark-home-section pspark-gradient-bg pspark-fade-in">
+    <div class="pspark-container pspark-glassmorphism text-center pspark-gradient-border" style="padding: 2.5rem 2rem; max-width: 1000px;">
+        <h2 class="pspark-home-title" style="color:rgb(0, 0, 0);">
+            {% if user.is_authenticated %}Ready to Create Something Amazing?{% else %}Join the Creative Revolution{% endif %}
+        </h2>
+        <p class="pspark-home-subtitle" style="color:rgb(0, 0, 0);">
+            {% if user.is_authenticated %}Start your next project today and bring your ideas to life.{% else %}Sign up now to unlock personalized project ideas and join our community.{% endif %}
+        </p>
+        <a href="{% if user.is_authenticated %}{% else %}{% url 'account:registration' %}{% endif %}" class="pspark-gradient-bg pspark-gradient-button pspark-hover-glow">
+            {% if user.is_authenticated %}Start Now{% else %}Join Now{% endif %}
+        </a>
+    </div>
+</section>
 
 {% endblock %}

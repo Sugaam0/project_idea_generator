@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<main class="pspark-form-section">
+        <div class="pspark-container pspark-form-container pspark-gradient-border pspark-glassmorphism pspark-hover-glow pspark-fade-in">
+            <h1 class="pspark-form-title pspark-staggered-fade-in">About Project Idea Generator</h1>
+            <p class="pspark-form-subtitle pspark-staggered-fade-in">
+                Discover the story behind your go-to platform for sparking creativity and finding your next big project.
+            </p>
+            <div class="pspark-card-content pspark-staggered-fade-in">
+                <p class="pspark-card-text">
+                    Welcome to <span class="pspark-home-link">Project Idea Generator</span>, where creativity meets innovation! Our mission is to empower developers, designers, writers, and hobbyists to bring their ideas to life with personalized project recommendations tailored to your skills and interests.
+                </p>
+                <p class="pspark-card-text">
+                    Powered by <a href="https://x.ai" target="_blank" class="pspark-form-link">Grok AI</a>, created by xAI, our platform takes your input—whether it’s your expertise, passions, or preferred project type—and transforms it into unique, actionable project ideas. From coding a cutting-edge app to crafting a compelling story, we’re here to make ideation seamless and inspiring.
+                </p>
+                <p class="pspark-card-text">
+                    Whether you’re a seasoned creator or just starting out, Project Idea Generator is designed to fuel your imagination and help you take the first step toward your next masterpiece. Join our community of innovators and let’s spark something extraordinary together!
+                </p>
+            </div>
+            <div class="pspark-form-footer pspark-staggered-fade-in">
+                {% if user.is_authenticated %}
+                <a href="{% url 'idea_app:generate_ideas' %}" class="pspark-gradient-button pspark-gradient-bg">Generate Your First Idea</a>
+               
+            {% else %}
+                <a href="{% url 'account:login' %}" class="pspark-gradient-button pspark-gradient-bg">Login to Generate Your First Idea</a>
+                
+            {% endif %}
+            </div>
+        </div>
+    </main>
+
+
+
+{% endblock %}
