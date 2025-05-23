@@ -7,6 +7,8 @@ import markdown
 from .models import ProjectIdea
 from groq import Groq, RateLimitError, GroqError
 load_dotenv()
+groq_api_key = os.getenv("GROQ_API_KEY")
+
 
 def home_view(request):
     return render(request, 'home.html')
@@ -14,7 +16,7 @@ def home_view(request):
 # Function to call Groq API
 def generate_project_idea(prompt):
     try:
-        client = Groq(api_key="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")
+        client = Groq(api_key=groq_api_key)
         response = client.chat.completions.create(
             model="llama3-70b-8192",
             messages=[{
