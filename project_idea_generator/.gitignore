@@ -1,0 +1,18 @@
+# Ignore virtual environment
+venv/
+
+# Ignore VS Code settings (optional)
+.vscode/
+
+# Ignore history folder
+.history/
+
+# Ignore Python cache
+__pycache__/
+*.pyc
+
+# Ignore environment variables
+.env
+
+# Ignore SQLite DB (optional, only if you don't want to upload)
+db.sqlite3
